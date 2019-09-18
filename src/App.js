@@ -1,11 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import Members from './components/Members';
+import MemberForm from './components/MemberForm';
+
+// import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  const [members, setMembers] = useState([]);
+  const addNewMember = member => {
+    setMembers([...members, member]);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
+      <h1>Team Members</h1>
+      <MemberForm addNewMember={addNewMember} />
+      <Members members={members} />
+      
+    </div>
+  );
+}
+
+export default App;
+
+
+
+{/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
@@ -18,9 +38,4 @@ function App() {
         >
           Learn React
         </a>
-      </header>
-    </div>
-  );
-}
-
-export default App;
+      </header> */}
