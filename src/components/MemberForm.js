@@ -36,12 +36,14 @@ const MemberForm = props => {
 
     const submitForm = e => {
         e.preventDefault();
-        props.addNewMember(member);
-        setMember({ name: '', email: '', role: '' });
+        const newMember = {...member, id: Date.now()
+        }
+        props.addNewMember(newMember);
+        setMember({name: '', email: '', role: ''})
     }
 
     return (
-        <StyledForm>
+        <StyledForm onSubmit={submitForm}>
             <label htmlFor='name'>Name: </label>
             <StyledInput 
                 id='name'
@@ -64,7 +66,7 @@ const MemberForm = props => {
             <StyledInput 
                 id='role'
                 type='text'
-                name='name'
+                name='role'
                 value={member.role}
                 onChange={changeHandler}
             />
